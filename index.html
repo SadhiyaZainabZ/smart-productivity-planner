@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Productivity Planner</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2>Planner Setup</h2>
+            <div id="currentDateDisplay" class="date-info">Loading date...</div>
+        </div>
+
+        <div class="sidebar-stats">
+            <div class="stat-item">
+                <span class="stat-label">Daily Progress:</span>
+                <span id="dailyScoreSidebar" class="stat-value">0%</span>
+            </div>
+        </div>
+
+        <form id="config-form">
+            <div class="input-group full-width">
+                <label for="tasksInput">Tasks (comma separated)</label>
+                <textarea id="tasksInput" placeholder="e.g. leetcode, aptitude, soft skills" required></textarea>
+            </div>
+
+            <div class="settings-grid">
+                <div class="input-group">
+                    <label for="sleepHours">Sleep (hrs)</label>
+                    <input type="number" id="sleepHours" value="7" min="0" max="14" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label for="getReadyTime">Get Ready (hrs)</label>
+                    <input type="number" id="getReadyTime" value="1" min="0" max="4" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label for="travelTime">Travel (hrs) one-way</label>
+                    <input type="number" id="travelTime" value="1" min="0" max="4" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label for="mealDuration">Meal (hrs)</label>
+                    <input type="number" id="mealDuration" value="1" min="0" max="3" step="0.5">
+                </div>
+                <div class="input-group">
+                    <label for="collegeStart">College Start</label>
+                    <input type="time" id="collegeStart" value="09:00">
+                </div>
+                <div class="input-group">
+                    <label for="collegeEnd">College End</label>
+                    <input type="time" id="collegeEnd" value="16:00">
+                </div>
+                <div class="input-group full-width">
+                    <label>
+                        <input type="checkbox" id="holidayMode"> Holiday / Leave
+                    </label>
+                </div>
+            </div>
+            <button type="submit" id="generateBtn" class="btn-primary">Generate Schedule</button>
+        </form>
+    </aside>
+
+    <main class="main-content">
+        <header class="dashboard-header">
+            <div class="date-display">
+                <h1 id="mainDateDisplay">Today</h1>
+                <span id="dayTypeBadge" class="badge">Weekday</span>
+            </div>
+            <div class="progress-container">
+                <div class="stats-text">
+                    <span id="statCompleted">0</span> / <span id="statTotal">0</span> Completed
+                    <span class="missed-stat">(<span id="statMissed">0</span> Missed)</span>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressBar"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="timeline-container">
+            <div class="timeline-header">
+                <h3>Today's Schedule</h3>
+                <p>Click tasks to toggle: Pending → Completed → Missed</p>
+            </div>
+            <div class="timeline" id="timeline">
+                <div class="empty-state">Configure and generate your schedule to start.</div>
+            </div>
+        </div>
+    </main>
+
+    <aside class="insights-panel">
+        <div class="panel-section">
+            <h3>Weekly Briefing</h3>
+            <div class="insight-card">
+                <div class="insight-value" id="weeklyScore">0%</div>
+                <div class="insight-label">Avg Productivity (All Time)</div>
+            </div>
+        </div>
+        <div class="panel-section">
+            <h3>AI Coach Suggestions</h3>
+            <ul class="suggestions-list" id="suggestionsList">
+                <li class="suggestion-item">Keep consistent to see your long-term trends!</li>
+            </ul>
+        </div>
+    </aside>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
