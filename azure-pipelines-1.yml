@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    goals: 'clean package'
+
+    publishJUnitResults: false
+
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
+
+    mavenVersionOption: 'Default'
+
+    jdkArchitectureOption: 'x64'
+
+    mavenAuthenticateFeed: false
